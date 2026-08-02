@@ -19,15 +19,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+          cache: 'gradle'
 
       - name: Make gradle wrapper executable
         run: chmod +x ./gradlew
 
       - name: Build APKs
-        run: ./gradlew assembleDebug assembleRelease
+        run: ./gradlew assembleDebug assembleRelease --stacktrace
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
